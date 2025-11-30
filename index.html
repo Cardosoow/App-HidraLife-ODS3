@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HidraLife - Monitor de Água</title>
+    <style>
+        /* Design focado em UX/UI e Acessibilidade (ISO 9241) */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #E3F2FD; /* Azul claro suave */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #0D47A1;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 85%;
+            max-width: 400px;
+        }
+        h1 { margin-bottom: 0.5rem; font-size: 1.8rem; }
+        p { color: #546E7A; margin-bottom: 2rem; }
+        .counter {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2196F3;
+            margin: 1rem 0;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .btn-drink {
+            background-color: #2196F3; /* Cor primária */
+            color: white;
+        }
+        .btn-drink:hover { background-color: #1976D2; }
+        .btn-reset {
+            background-color: #FFEBEE;
+            color: #D32F2F;
+            margin-top: 10px;
+        }
+        .ods-tag {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #90A4AE;
+            border: 1px solid #CFD8DC;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>HidraLife 💧</h1>
+        <p>Meta diária: 2000ml</p>
+        
+        <div class="counter" id="contador">0 ml</div>
+
+        <button class="btn-drink" onclick="beberAgua()">+ Beber 250ml</button>
+        <button class="btn-reset" onclick="resetar()">Reiniciar Dia</button>
+
+        <div class="ods-tag">ODS 3: Saúde e Bem-Estar</div>
+    </div>
+
+    <script>
+        // Lógica simples e funcional (MVP)
+        let total = 0;
+        const display = document.getElementById('contador');
+
+        function beberAgua() {
+            total += 250;
+            atualizarTela();
+            // Feedback visual simples
+            if (total >= 2000) {
+                alert("Parabéns! Você atingiu a meta diária!");
+            }
+        }
+
+        function resetar() {
+            if(confirm("Deseja zerar seu contador de hoje?")) {
+                total = 0;
+                atualizarTela();
+            }
+        }
+
+        function atualizarTela() {
+            display.innerText = total + " ml";
+        }
+    </script>
+</body>
+</html>
